@@ -17,6 +17,7 @@
 		5B08CE7A2B56665700F93F4F /* AnimalAtlasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CE792B56665700F93F4F /* AnimalAtlasTests.swift */; };
 		5B08CE842B56665700F93F4F /* AnimalAtlasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CE832B56665700F93F4F /* AnimalAtlasUITests.swift */; };
 		5B08CE862B56665700F93F4F /* AnimalAtlasUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CE852B56665700F93F4F /* AnimalAtlasUITestsLaunchTests.swift */; };
+		5B08CE952B56677F00F93F4F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5B08CE942B56677F00F93F4F /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B08CE952B56677F00F93F4F /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,8 +103,9 @@
 		5B08CE5E2B56665600F93F4F /* AnimalAtlas */ = {
 			isa = PBXGroup;
 			children = (
-				5B08CE5F2B56665600F93F4F /* AppDelegate.swift */,
-				5B08CE612B56665600F93F4F /* SceneDelegate.swift */,
+				5B08CE9F2B5667DC00F93F4F /* Additional Files */,
+				5B08CE982B56679800F93F4F /* Core */,
+				5B08CE972B56679300F93F4F /* Module */,
 				5B08CE632B56665600F93F4F /* ViewController.swift */,
 				5B08CE652B56665600F93F4F /* Main.storyboard */,
 				5B08CE6B2B56665700F93F4F /* Assets.xcassets */,
@@ -130,6 +133,77 @@
 			path = AnimalAtlasUITests;
 			sourceTree = "<group>";
 		};
+		5B08CE972B56679300F93F4F /* Module */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		5B08CE982B56679800F93F4F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5B08CE9E2B5667CC00F93F4F /* Router */,
+				5B08CE9D2B5667C700F93F4F /* Helper */,
+				5B08CE992B56679C00F93F4F /* Data */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5B08CE992B56679C00F93F4F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5B08CE9C2B5667B700F93F4F /* Remote */,
+				5B08CE9B2B5667B100F93F4F /* Locale */,
+				5B08CE9A2B5667AC00F93F4F /* Repository */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		5B08CE9A2B5667AC00F93F4F /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		5B08CE9B2B5667B100F93F4F /* Locale */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Locale;
+			sourceTree = "<group>";
+		};
+		5B08CE9C2B5667B700F93F4F /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		5B08CE9D2B5667C700F93F4F /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		5B08CE9E2B5667CC00F93F4F /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		5B08CE9F2B5667DC00F93F4F /* Additional Files */ = {
+			isa = PBXGroup;
+			children = (
+				5B08CE612B56665600F93F4F /* SceneDelegate.swift */,
+				5B08CE5F2B56665600F93F4F /* AppDelegate.swift */,
+			);
+			path = "Additional Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +220,9 @@
 			dependencies = (
 			);
 			name = AnimalAtlas;
+			packageProductDependencies = (
+				5B08CE942B56677F00F93F4F /* Kingfisher */,
+			);
 			productName = AnimalAtlas;
 			productReference = 5B08CE5C2B56665600F93F4F /* AnimalAtlas.app */;
 			productType = "com.apple.product-type.application";
@@ -218,6 +295,11 @@
 				Base,
 			);
 			mainGroup = 5B08CE532B56665600F93F4F;
+			packageReferences = (
+				5B08CE922B56677200F93F4F /* XCRemoteSwiftPackageReference "SnapKit" */,
+				5B08CE932B56677F00F93F4F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				5B08CE962B56678C00F93F4F /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 5B08CE5D2B56665600F93F4F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -611,6 +693,41 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5B08CE922B56677200F93F4F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.0;
+			};
+		};
+		5B08CE932B56677F00F93F4F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.2;
+			};
+		};
+		5B08CE962B56678C00F93F4F /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5B08CE942B56677F00F93F4F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B08CE932B56677F00F93F4F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		5B08CE682B56665600F93F4F /* AnimalAtlas.xcdatamodeld */ = {
