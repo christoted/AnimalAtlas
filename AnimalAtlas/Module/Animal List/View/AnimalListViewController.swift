@@ -7,14 +7,17 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class AnimalListViewController: UIViewController {
   
-    private var animalListView: AnimalListView = {
-        let view = AnimalListView()
+    private var viewModel = AnimalListViewModel()
+    
+    private lazy var animalListView: AnimalListView = {
+        let view = AnimalListView(viewModel: self.viewModel)
         return view
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

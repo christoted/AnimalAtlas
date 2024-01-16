@@ -62,7 +62,7 @@ class AnimalListViewCell: UITableViewCell {
     }
     
     // Set Data
-    func setAnimalListData() {
-        
+    func setAnimalListData(name: String?) {
+        animalName.text = name ?? ""
     }
 }

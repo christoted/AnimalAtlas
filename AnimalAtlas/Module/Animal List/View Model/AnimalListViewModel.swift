@@ -6,9 +6,15 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class AnimalListViewModel {
-    init() {
-        
+    
+    init() {}
+    
+    func provideAnimalList() -> [String] {
+        return ["Elephant", "Lion", "Fox", "Dog", "Shark", "Turtle", "Whale", "Penguin"]
     }
+    
 }

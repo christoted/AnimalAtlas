@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class AnimalListView: UIView {
     
@@ -19,10 +20,14 @@ class AnimalListView: UIView {
         return tableView
     }()
     
+    private var viewModel: AnimalListViewModel?
+    private let disposeBag = DisposeBag()
+    
     // MARK: Init
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(viewModel: AnimalListViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
         setupView()
     }
     
@@ -45,16 +50,18 @@ class AnimalListView: UIView {
 
 extension AnimalListView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel?.provideAnimalList().count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AnimalListViewCell.className(), for: indexPath) as? AnimalListViewCell else { return UITableViewCell() }
+        let data = viewModel?.provideAnimalList()[indexPath.row]
         cell.selectionStyle = .none
+        cell.setAnimalListData(name: data)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 150
     }
 }

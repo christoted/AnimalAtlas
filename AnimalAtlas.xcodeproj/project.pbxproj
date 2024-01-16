@@ -30,6 +30,16 @@
 		5B08CEBB2B566CDB00F93F4F /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CEBA2B566CDB00F93F4F /* UIColor+Ext.swift */; };
 		5B08CEBD2B566E1300F93F4F /* NSObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CEBC2B566E1300F93F4F /* NSObject+Ext.swift */; };
 		5B08CEC02B5686F900F93F4F /* AnimalListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CEBF2B5686F900F93F4F /* AnimalListViewModel.swift */; };
+		5B08CEC32B56879700F93F4F /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CEC22B56879700F93F4F /* ErrorHandling.swift */; };
+		5B08CEC52B5687C400F93F4F /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CEC42B5687C400F93F4F /* Constant.swift */; };
+		5B08CEC72B5687D000F93F4F /* ManualInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CEC62B5687D000F93F4F /* ManualInjection.swift */; };
+		5B08CEC92B56893E00F93F4F /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CEC82B56893E00F93F4F /* ApiClient.swift */; };
+		5B08CECB2B56898000F93F4F /* NetworkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CECA2B56898000F93F4F /* NetworkFetcher.swift */; };
+		5B08CECE2B568DF700F93F4F /* AnimalAtlasRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CECD2B568DF700F93F4F /* AnimalAtlasRemoteDataSource.swift */; };
+		5B08CED22B568E1800F93F4F /* AnimalListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CED12B568E1800F93F4F /* AnimalListRequest.swift */; };
+		5B08CED42B568EEC00F93F4F /* AnimalListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CED32B568EEC00F93F4F /* AnimalListResponse.swift */; };
+		5B08CED62B568F8E00F93F4F /* AnimalAtlasRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CED52B568F8E00F93F4F /* AnimalAtlasRepository.swift */; };
+		5B08CED82B56F77100F93F4F /* ObservableType+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08CED72B56F77100F93F4F /* ObservableType+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +82,16 @@
 		5B08CEBA2B566CDB00F93F4F /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		5B08CEBC2B566E1300F93F4F /* NSObject+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Ext.swift"; sourceTree = "<group>"; };
 		5B08CEBF2B5686F900F93F4F /* AnimalListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalListViewModel.swift; sourceTree = "<group>"; };
+		5B08CEC22B56879700F93F4F /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
+		5B08CEC42B5687C400F93F4F /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		5B08CEC62B5687D000F93F4F /* ManualInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualInjection.swift; sourceTree = "<group>"; };
+		5B08CEC82B56893E00F93F4F /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		5B08CECA2B56898000F93F4F /* NetworkFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFetcher.swift; sourceTree = "<group>"; };
+		5B08CECD2B568DF700F93F4F /* AnimalAtlasRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalAtlasRemoteDataSource.swift; sourceTree = "<group>"; };
+		5B08CED12B568E1800F93F4F /* AnimalListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalListRequest.swift; sourceTree = "<group>"; };
+		5B08CED32B568EEC00F93F4F /* AnimalListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalListResponse.swift; sourceTree = "<group>"; };
+		5B08CED52B568F8E00F93F4F /* AnimalAtlasRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalAtlasRepository.swift; sourceTree = "<group>"; };
+		5B08CED72B56F77100F93F4F /* ObservableType+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +209,7 @@
 		5B08CE9A2B5667AC00F93F4F /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				5B08CED52B568F8E00F93F4F /* AnimalAtlasRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -203,6 +224,9 @@
 		5B08CE9C2B5667B700F93F4F /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				5B08CECC2B568DC800F93F4F /* AnimalList */,
+				5B08CEC12B56878F00F93F4F /* Base */,
+				5B08CECD2B568DF700F93F4F /* AnimalAtlasRemoteDataSource.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -210,6 +234,8 @@
 		5B08CE9D2B5667C700F93F4F /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				5B08CEC42B5687C400F93F4F /* Constant.swift */,
+				5B08CEC62B5687D000F93F4F /* ManualInjection.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -264,8 +290,44 @@
 				5B08CEB82B566CB000F93F4F /* UIFont+Ext.swift */,
 				5B08CEBA2B566CDB00F93F4F /* UIColor+Ext.swift */,
 				5B08CEBC2B566E1300F93F4F /* NSObject+Ext.swift */,
+				5B08CED72B56F77100F93F4F /* ObservableType+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5B08CEC12B56878F00F93F4F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				5B08CEC22B56879700F93F4F /* ErrorHandling.swift */,
+				5B08CEC82B56893E00F93F4F /* ApiClient.swift */,
+				5B08CECA2B56898000F93F4F /* NetworkFetcher.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		5B08CECC2B568DC800F93F4F /* AnimalList */ = {
+			isa = PBXGroup;
+			children = (
+				5B08CED02B568E0200F93F4F /* Response */,
+				5B08CECF2B568DFE00F93F4F /* Request */,
+			);
+			path = AnimalList;
+			sourceTree = "<group>";
+		};
+		5B08CECF2B568DFE00F93F4F /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				5B08CED12B568E1800F93F4F /* AnimalListRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		5B08CED02B568E0200F93F4F /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				5B08CED32B568EEC00F93F4F /* AnimalListResponse.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,17 +473,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B08CED62B568F8E00F93F4F /* AnimalAtlasRepository.swift in Sources */,
 				5B08CEBD2B566E1300F93F4F /* NSObject+Ext.swift in Sources */,
 				5B08CEB72B566C1300F93F4F /* UIView+Ext.swift in Sources */,
 				5B08CEC02B5686F900F93F4F /* AnimalListViewModel.swift in Sources */,
+				5B08CED82B56F77100F93F4F /* ObservableType+Ext.swift in Sources */,
+				5B08CEC92B56893E00F93F4F /* ApiClient.swift in Sources */,
 				5B08CEB42B566A2000F93F4F /* AnimalListViewCell.swift in Sources */,
 				5B08CE642B56665600F93F4F /* ViewController.swift in Sources */,
+				5B08CEC72B5687D000F93F4F /* ManualInjection.swift in Sources */,
+				5B08CECB2B56898000F93F4F /* NetworkFetcher.swift in Sources */,
 				5B08CE602B56665600F93F4F /* AppDelegate.swift in Sources */,
 				5B08CEA72B56687C00F93F4F /* AnimalListView.swift in Sources */,
+				5B08CEC52B5687C400F93F4F /* Constant.swift in Sources */,
+				5B08CED22B568E1800F93F4F /* AnimalListRequest.swift in Sources */,
 				5B08CEA52B56686700F93F4F /* AnimalListViewController.swift in Sources */,
+				5B08CEC32B56879700F93F4F /* ErrorHandling.swift in Sources */,
 				5B08CEB92B566CB000F93F4F /* UIFont+Ext.swift in Sources */,
 				5B08CEBB2B566CDB00F93F4F /* UIColor+Ext.swift in Sources */,
+				5B08CED42B568EEC00F93F4F /* AnimalListResponse.swift in Sources */,
 				5B08CE622B56665600F93F4F /* SceneDelegate.swift in Sources */,
+				5B08CECE2B568DF700F93F4F /* AnimalAtlasRemoteDataSource.swift in Sources */,
 				5B08CE6A2B56665600F93F4F /* AnimalAtlas.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
