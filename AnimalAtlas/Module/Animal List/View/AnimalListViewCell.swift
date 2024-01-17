@@ -22,10 +22,16 @@ class AnimalListViewCell: UITableViewCell {
     
     private var animalName: UILabel = {
         let label = UILabel()
-        label.font = .heading1
-        label.text = "Gajah"
-        label.textColor = AnimalAtlasColor.textSecondy.color
+        label.font = .heading2
+        label.textColor = AnimalAtlasColor.textPrimary.color
         return label
+    }()
+    
+    private var arrowLogo: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "chevron.right")
+        image.tintColor = .black
+        return image
     }()
     
     // MARK: Init
@@ -50,6 +56,7 @@ class AnimalListViewCell: UITableViewCell {
     private func setupView() {
         self.contentView.addSubview(container)
         self.container.addSubview(animalName)
+        self.container.addSubview(arrowLogo)
         
         container.snp.makeConstraints { make in
             make.left.top.equalTo(8)
@@ -57,7 +64,13 @@ class AnimalListViewCell: UITableViewCell {
         }
         
         animalName.snp.makeConstraints { make in
-            make.center.equalTo(container)
+            make.centerY.equalTo(container)
+            make.left.equalTo(16)
+        }
+        
+        arrowLogo.snp.makeConstraints { make in
+            make.centerY.equalTo(container)
+            make.right.equalTo(-16)
         }
     }
     

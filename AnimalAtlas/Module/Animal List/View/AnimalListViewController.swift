@@ -38,7 +38,7 @@ class AnimalListViewController: UIViewController {
     
     private func setRightItemNavigation() {
         if let image = UIImage(systemName: "heart.fill") {
-            let rightBarButtonItem = UIBarButtonItem(title: nil, image: image, target: self, action: #selector(rightBarButtonTapped))
+            let rightBarButtonItem = UIBarButtonItem(title: nil, image: image.withTintColor(.black), target: self, action: #selector(rightBarButtonTapped))
             navigationItem.rightBarButtonItem = rightBarButtonItem
         }
     }
