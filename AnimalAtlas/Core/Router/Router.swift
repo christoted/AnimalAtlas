@@ -18,4 +18,11 @@ class Router {
             presentingView.navigationController?.pushViewController(controller, animated: true)
         }
     }
+    
+    func showFavorite(from presentingView: UIViewController? = nil) {
+        let controller = AnimalFavoriteViewController()
+        if let presentingView = presentingView {
+            presentingView.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
 }

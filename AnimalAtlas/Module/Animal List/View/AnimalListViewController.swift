@@ -44,7 +44,7 @@ class AnimalListViewController: UIViewController {
     }
     
     @objc private func rightBarButtonTapped() {
-        // TODO: Create the Favorite Page
+        Router.shared.showFavorite(from: self)
     }
     
     private func animalListViewCallback() {
