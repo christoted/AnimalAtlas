@@ -23,8 +23,9 @@ class AnimalListViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.navigationItem.title = "Animal Atlas"
-        setupView()
         self.view.backgroundColor = .white
+        setupView()
+        animalListViewCallback()
     }
     
     private func setupView() {
@@ -32,7 +33,6 @@ class AnimalListViewController: UIViewController {
         animalListView.snp.makeConstraints { make in
             make.left.right.top.bottom.equalToSuperview()
         }
-        
         setRightItemNavigation()
     }
     
@@ -44,6 +44,12 @@ class AnimalListViewController: UIViewController {
     }
     
     @objc private func rightBarButtonTapped() {
-        
+        // TODO: Create the Favorite Page
+    }
+    
+    private func animalListViewCallback() {
+        animalListView.onCellTapped = { [weak self] animalName in
+            Router.shared.showDetail(from: self, animalName: animalName)
+        }
     }
 }

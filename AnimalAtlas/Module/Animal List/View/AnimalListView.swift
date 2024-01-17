@@ -22,6 +22,7 @@ class AnimalListView: UIView {
     
     private var viewModel: AnimalListViewModel?
     private let disposeBag = DisposeBag()
+    var onCellTapped: ((String) -> Void)?
     
     // MARK: Init
     
@@ -63,5 +64,10 @@ extension AnimalListView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let animalName = viewModel?.provideAnimalList()[indexPath.row]
+        onCellTapped?(animalName ?? "")
     }
 }

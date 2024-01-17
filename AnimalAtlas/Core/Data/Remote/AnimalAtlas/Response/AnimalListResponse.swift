@@ -15,12 +15,12 @@ struct AnimalListResponse: Codable {
 }
 
 struct Characteristics: Codable {
-    let prey, nameOfYoung, groupBehavior, estimatedPopulationSize: String
-    let biggestThreat, mostDistinctiveFeature, gestationPeriod, habitat: String
-    let diet, averageLitterSize, lifestyle, commonName: String
-    let numberOfSpecies, location, slogan, group: String
-    let color, skinType, topSpeed, lifespan: String
-    let weight, height, ageOfSexualMaturity, ageOfWeaning: String
+    let prey, nameOfYoung, groupBehavior, estimatedPopulationSize: String?
+    let biggestThreat, mostDistinctiveFeature, gestationPeriod, habitat: String?
+    let diet, averageLitterSize, lifestyle, commonName: String?
+    let numberOfSpecies, location, slogan, group: String?
+    let color, skinType, topSpeed, lifespan: String?
+    let weight, height, ageOfSexualMaturity, ageOfWeaning: String?
 
     enum CodingKeys: String, CodingKey {
         case prey
@@ -45,8 +45,8 @@ struct Characteristics: Codable {
 }
 
 struct Taxonomy: Codable {
-    let kingdom, phylum, taxonomyClass, order: String
-    let family, genus, scientificName: String
+    let kingdom, phylum, taxonomyClass, order: String?
+    let family, genus, scientificName: String?
 
     enum CodingKeys: String, CodingKey {
         case kingdom, phylum
