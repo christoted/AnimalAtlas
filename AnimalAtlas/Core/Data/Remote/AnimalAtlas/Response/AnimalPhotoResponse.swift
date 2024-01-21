@@ -33,6 +33,7 @@ struct Photo: Codable {
     let src: Src
     let liked: Bool
     let alt: String
+    var isLiked: Bool?
 
     enum CodingKeys: String, CodingKey {
         case id, width, height, url, photographer

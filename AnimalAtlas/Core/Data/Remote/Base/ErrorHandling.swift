@@ -11,3 +11,8 @@ enum APIError: Error {
     case requestFailed
     case invalidResponse
 }
+
+enum CoreDataError: Error {
+    case failedToFetch
+    case failedToDelete
+}

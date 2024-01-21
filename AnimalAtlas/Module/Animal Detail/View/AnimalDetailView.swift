@@ -142,6 +142,11 @@ class AnimalDetailView: UIView {
         return collectionView
     }()
     
+    private var indicatorLoadingView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        return view
+    }()
+    
     // MARK: Var
     
     var animalName: String = "" {
@@ -161,6 +166,7 @@ class AnimalDetailView: UIView {
         setupView()
         getAnimalData()
         getAnimalPhoto()
+        indicatorLoadingView.startAnimating()
     }
     
     required init?(coder: NSCoder) {
@@ -186,6 +192,7 @@ class AnimalDetailView: UIView {
         self.containerView.addSubview(lifespanLbl)
         self.containerView.addSubview(photosLbl)
         self.containerView.addSubview(collectionView)
+        self.containerView.addSubview(indicatorLoadingView)
         
         scrollView.snp.makeConstraints { make in
             make.left.equalTo(self)
@@ -265,11 +272,16 @@ class AnimalDetailView: UIView {
             make.right.equalTo(-16)
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-16)
         }
-        
+        indicatorLoadingView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
     }
     
     private func getAnimalData() {
         viewModel?.animalDetailSubjectDriver.drive(onNext: { [weak self] animalData in
+            self?.indicatorLoadingView.stopAnimating()
+            self?.indicatorLoadingView.hidesWhenStopped = true
             self?.animalNameLbl.text = animalData.name
             self?.animalSloganLbl.text = animalData.characteristics.slogan ?? ""
             self?.taxonomyNameLbl.text = "Taxonomy"
@@ -285,14 +297,36 @@ class AnimalDetailView: UIView {
             self?.topSpeedLbl.text = "Top Speed : \(animalData.characteristics.topSpeed ?? "")"
             self?.lifespanLbl.text = "Life Span : \(animalData.characteristics.lifespan ?? "")"
             self?.photosLbl.text = "Photos"
+            self?.collectionView.reloadData()
         }).disposed(by: disposeBag)
     }
     
     private func getAnimalPhoto() {
         viewModel?.animalPhotoSubjectDriver.drive(onNext: { [weak self] data in
             self?.animalPhotos = data.photos
+            self?.getAnimalPhotoLiked()
             self?.collectionView.reloadData()
         }).disposed(by: disposeBag)
+    }
+    
+    // Locale
+    private func getAnimalPhotoLiked() {
+        viewModel?.getAnimalPhotoLiked()
+        viewModel?.animalPhotoLocaleSubjectDriver.drive(onNext: { [weak self] animalModels in
+            guard let self = self else { return }
+            for (_, val) in animalModels.enumerated() {
+                for (indexAnimalPhotoResponse, valAnimalPhotoResponse) in self.animalPhotos.enumerated() {
+                    if (val.animalId == valAnimalPhotoResponse.id) {
+                        self.animalPhotos[indexAnimalPhotoResponse].isLiked = true
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    func fetchTheAnimalPhoto() {
+        getAnimalPhoto()
     }
 }
 
@@ -305,10 +339,18 @@ extension AnimalDetailView: UICollectionViewDelegate, UICollectionViewDataSource
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnimalPhotoCollectionViewCell.className(), for: indexPath) as? AnimalPhotoCollectionViewCell else { return UICollectionViewCell() }
         
         let photo = animalPhotos[indexPath.row]
-        cell.setAnimaPhoto(data: photo)
+        cell.setAnimalPhoto(data: photo, animalName: self.animalNameLbl.text ?? "", animalType: self.animalName)
+        cell.idx = indexPath.row
         
-        cell.onButtonLikedTapped = { isLiked in
-            print(">> \(isLiked)")
+        cell.onButtonLikedTapped = {[weak self] animalModel,idx, isLiked in
+            // Save or Delete to Local Database
+            if isLiked {
+                self?.viewModel?.saveAnimalPhoto(animalModel: animalModel)
+                self?.animalPhotos[idx].isLiked = true
+            } else {
+                self?.viewModel?.deleteAnimalPhoto(animalId: animalModel.animalId)
+            }
+            self?.fetchTheAnimalPhoto()
         }
         return cell
     }

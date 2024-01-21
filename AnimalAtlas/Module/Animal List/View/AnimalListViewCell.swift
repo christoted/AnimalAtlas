@@ -30,7 +30,7 @@ class AnimalListViewCell: UITableViewCell {
     private var arrowLogo: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "chevron.right")
-        image.tintColor = .black
+        image.tintColor = AnimalAtlasColor.textSecondy.color
         return image
     }()
     

@@ -13,6 +13,7 @@ class ManualInjection {
     
     func provideAnimalAtlasRepository() -> AnimalAtlasRepositoryProtocol {
         let remoteDataSource = AnimalAtlasRemoteDataSource()
-        return AnimalAtlasRepository(animalAtlasRemoteDataSource: remoteDataSource)
+        let localeDataSource = AnimalAtlasLocaleDataSource()
+        return AnimalAtlasRepository(animalAtlasRemoteDataSource: remoteDataSource, animalAtlasLocaleDataSource: localeDataSource)
     }
 }

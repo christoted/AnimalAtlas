@@ -34,6 +34,11 @@ class AnimalDetailViewController: UIViewController {
         setupView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animalDetailView.fetchTheAnimalPhoto()
+    }
+    
     private func setupView() {
         self.view.addSubview(animalDetailView)
         
