@@ -26,6 +26,11 @@ class AnimalFavoriteViewController: UIViewController {
         setupView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animalFavoriteView.getFavoritePhoto()
+    }
+    
     private func setRightItemNavigation() {
         if let image = UIImage(systemName: "line.3.horizontal.decrease.circle") {
             let rightBarButtonItem = UIBarButtonItem(title: nil, image: image.withTintColor(.black), target: self, action: #selector(rightBarButtonTapped))
@@ -48,44 +53,49 @@ class AnimalFavoriteViewController: UIViewController {
     
     private func showActionSheet() {
         let alertController = UIAlertController(title: "Filter By", message: nil, preferredStyle: .actionSheet)
+        
+        let optionAll = UIAlertAction(title: Constant.all, style: .default) { [weak self] _ in
+            self?.viewModel.getAnimalPhotoLiked()
+        }
 
-        let option1Action = UIAlertAction(title: "Elephant", style: .default) { _ in
-              print("Option 1 selected")
+        let option1Action = UIAlertAction(title: Constant.elephant, style: .default) { [weak self] _ in
+            self?.viewModel.filterAnimalImage(animalName: Constant.elephant)
+        }
+
+        let option2Action = UIAlertAction(title: Constant.lion, style: .default) {[weak self] _ in
+            self?.viewModel.filterAnimalImage(animalName: Constant.lion)
           }
 
-        let option2Action = UIAlertAction(title: "Lion", style: .default) { _ in
-              print("Option 2 selected")
-          }
-
-        let option3Action = UIAlertAction(title: "Fox", style: .default) { _ in
-              print("Cancelled")
+        let option3Action = UIAlertAction(title: Constant.fox, style: .default) {[weak self] _ in
+            self?.viewModel.filterAnimalImage(animalName: Constant.fox)
           }
         
-        let option4Action = UIAlertAction(title: "Dog", style: .default) { _ in
-              print("Cancelled")
+        let option4Action = UIAlertAction(title: Constant.dog, style: .default) {[weak self] _ in
+            self?.viewModel.filterAnimalImage(animalName: Constant.dog)
           }
         
-        let option5Action = UIAlertAction(title: "Shark", style: .default) { _ in
-              print("Cancelled")
+        let option5Action = UIAlertAction(title: Constant.shark, style: .default) {[weak self] _ in
+            self?.viewModel.filterAnimalImage(animalName: Constant.shark)
           }
         
-        let option6Action = UIAlertAction(title: "Turle", style: .default) { _ in
-              print("Cancelled")
+        let option6Action = UIAlertAction(title: Constant.turtle, style: .default) {[weak self] _ in
+            self?.viewModel.filterAnimalImage(animalName: Constant.turtle)
           }
         
-        let option7Action = UIAlertAction(title: "Whale", style: .default) { _ in
-              print("Cancelled")
+        let option7Action = UIAlertAction(title: Constant.whale, style: .default) {[weak self] _ in
+            self?.viewModel.filterAnimalImage(animalName: Constant.whale)
           }
         
-        let option8Action = UIAlertAction(title: "Penguin", style: .default) { _ in
-              print("Cancelled")
+        let option8Action = UIAlertAction(title: Constant.penguin, style: .default) {[weak self] _ in
+            self?.viewModel.filterAnimalImage(animalName: Constant.penguin)
           }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
                   // Handle cancel action
                   print("Cancelled")
               }
-
+        
+        alertController.addAction(optionAll)
         alertController.addAction(option1Action)
         alertController.addAction(option2Action)
         alertController.addAction(option3Action)

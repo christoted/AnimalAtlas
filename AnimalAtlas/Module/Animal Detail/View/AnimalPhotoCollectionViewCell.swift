@@ -15,7 +15,7 @@ class AnimalPhotoCollectionViewCell: UICollectionViewCell {
         let view = UIView()
         view.layer.cornerRadius = 8
         view.dropShadow()
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         return view
     }()
     
@@ -34,12 +34,21 @@ class AnimalPhotoCollectionViewCell: UICollectionViewCell {
         return btn
     }()
     
-    var onButtonLikedTapped: ((Bool) ->())?
+    private var indicatorLoadingView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        return view
+    }()
+    
+    var onButtonLikedTapped: ((AnimalAtlasModel, Int, Bool) ->())?
     var isSelectedButton = false
+    var animalAtlasModel: AnimalAtlasModel?
+    var dataAnimalPhoto: Photo?
+    var idx: Int = -1
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        indicatorLoadingView.startAnimating()
     }
     
     required init?(coder: NSCoder) {
@@ -54,12 +63,14 @@ class AnimalPhotoCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         imageView.kf.cancelDownloadTask()
+        indicatorLoadingView.startAnimating()
     }
     
     private func setupView() {
         self.contentView.addSubview(containerView)
         self.containerView.addSubview(imageView)
         self.containerView.addSubview(likeBtn)
+        self.containerView.addSubview(indicatorLoadingView)
         
         containerView.snp.makeConstraints { make in
             make.top.equalTo(0)
@@ -73,20 +84,40 @@ class AnimalPhotoCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(imageView.snp.bottom).offset(-10) // -6
             make.right.equalTo(imageView.snp.right).offset(8) // 8
         }
+        indicatorLoadingView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
     }
     
     @objc private func toggleBtnLike() {
         isSelectedButton = !isSelectedButton
-        onButtonLikedTapped?(isSelectedButton)
-        
+        guard let animalAtlasModel = animalAtlasModel else { return }
+        onButtonLikedTapped?(animalAtlasModel, idx, isSelectedButton)
+        setupButtonState(isSelectedButton: isSelectedButton)
+    }
+    
+    func setAnimalPhoto(data: Photo, animalName: String, animalType: String) {
+        self.dataAnimalPhoto = data
+        isSelectedButton = data.isLiked ?? false
+        imageView.kf.setImage(with: URL(string: data.src.original), placeholder: nil, options: [.backgroundDecode, .cacheOriginalImage]) {[weak self] result in
+            switch result {
+            case .success(_):
+                self?.indicatorLoadingView.stopAnimating()
+                self?.indicatorLoadingView.hidesWhenStopped = true
+            case .failure(_):
+                break
+            }
+        }
+        self.animalAtlasModel = AnimalAtlasModel(animalId: data.id, animalName: animalName, animalType: animalType, animalImage: data.src.original)
+        setupButtonState(isSelectedButton: isSelectedButton)
+    }
+    
+    private func setupButtonState(isSelectedButton: Bool) {
         if isSelectedButton {
             likeBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
             likeBtn.setImage(UIImage(systemName: "heart"), for: .normal)
         }
-    }
-    
-    func setAnimaPhoto(data: Photo) {
-        imageView.kf.setImage(with: URL(string: data.src.original), placeholder: UIImage(named: ""), options: [.backgroundDecode, .cacheOriginalImage])
     }
 }

@@ -14,7 +14,7 @@ class AnimalListViewModel {
     init() {}
     
     func provideAnimalList() -> [String] {
-        return ["Elephant", "Lion", "Fox", "Dog", "Shark", "Turtle", "Whale", "Penguin"]
+        return [Constant.elephant, Constant.lion, Constant.fox, Constant.dog, Constant.shark, Constant.turtle, Constant.whale, Constant.penguin]
     }
     
 }

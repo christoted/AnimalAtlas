@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class AnimalFavoriteView: UIView {
     
@@ -24,10 +25,15 @@ class AnimalFavoriteView: UIView {
         return collectionView
     }()
     
+    private var viewModel: AnimalFavoriteViewModel?
+    private let disposeBag = DisposeBag()
+    private var animalModels: [AnimalAtlasModel] = []
+    
     init(viewModel: AnimalFavoriteViewModel) {
+        self.viewModel = viewModel
         super.init(frame: .zero)
-        
         setupView()
+        setupRx()
     }
     
     required init?(coder: NSCoder) {
@@ -43,16 +49,28 @@ class AnimalFavoriteView: UIView {
             make.left.right.equalTo(self)
         }
     }
+    
+    // Local
+    func getFavoritePhoto() {
+        viewModel?.getAnimalPhotoLiked()
+    }
+    
+    func setupRx() {
+        viewModel?.animalPhotoLocaleSubjectDriver.drive(onNext: { [weak self] data in
+            self?.animalModels = data
+            self?.collectionView.reloadData()
+        }).disposed(by: disposeBag)
+    }
 }
 
 extension AnimalFavoriteView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return animalModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnimalFavoriteViewCell.className(), for: indexPath) as? AnimalFavoriteViewCell else { return UICollectionViewCell() }
-        
+        cell.setupData(animalModel: animalModels[indexPath.row])
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
